@@ -21,3 +21,9 @@ docker exec $CONTAINER_NAME mysqldump -u $DB_USER -p$DB_PASSWORD --all-databases
 
 
 echo "Database backup has been created successfully in the Docker container."
+
+
+# 删除超过7天的备份
+find $BACKUP_DIR -type f -name '*.sql' -mtime +7 -exec rm {} \;
+
+echo "Old backups older than a week have been deleted."
