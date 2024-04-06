@@ -184,9 +184,17 @@ cp nginx-1.22.0.tar.gz /usr/local/
 cd /usr/local/
 tar -zxvf nginx-1.22.0.tar.gz
 
-cd nginx-1.20.1    
+cd nginx-1.22.0   
+
+sudo apt update
+sudo apt install build-essential		#安装c编译器
+sudo apt install libpcre3 libpcre3-dev
+sudo apt install zlib1g zlib1g-dev
+
+
 ./configure       #执行配置文件 默认安装到/usr/local/nginx
 ./configure --prefix=/usr/local/nginx --with-http_ssl_module #这个可以指定路径
+
 make               #手动安装
 make install       #若不确定再执行次文件
 
@@ -195,6 +203,9 @@ cd /usr/local/nginx/conf         //进入配置目录
 vim nginx.conf                   //编辑配置文件
 
 #运行
+cd ./sbin
+
+./nginx -v										//查看版本
 ./nginx                       //启动
 ./nginx -s stop               //停止
 ./nginx -s quit               //安全退出
@@ -209,7 +220,7 @@ ps aux|grep nginx             //查看ngnix进程
 
 ``` sh
 wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.deb
-apt install ./package_name.deb
+apt install ./jdk-17_linux-x64_bin.deb
 
 #添加配置环境
 export JAVA_HOME=/usr/lib/jvm/jdk-17
